@@ -1,75 +1,99 @@
 # Guion de exposición (90 segundos) — Sesión 2
 
-**Tema del equipo:** Análisis de sentimientos en textos en español con machine learning:
-modelos preentrenados (BERT / transformers) frente a técnicas tradicionales (SVM, Naive Bayes, ontologías).
+**Tema del equipo:** Análisis de sentimiento (PLN / IA).
+**Problema central (mapa mental):** ¿qué método clasifica mejor las mismas reseñas en español? Necesitamos una comparación fiable.
 
 **Reparto sugerido:** 3 voces (A, B, C). Si son 2 o 4 integrantes, redistribuyan los bloques.
 **Ritmo:** unas 210 palabras habladas. Ensayar con cronómetro.
 
 ---
 
-## Bloque 1 — Mapa de problema y pregunta (0:00 – 0:20) · Voz A
+## Bloque 1 — Contexto, causas y problema central (0:00 – 0:25) · Voz A
 
-> Buenos días. Somos el equipo [nombre]. En la sesión 1 nuestro mapa de problema partió de un hecho:
-> cada día se publican millones de opiniones en español en redes sociales y sitios de reseñas,
-> pero son texto no estructurado y la mayoría de modelos y datasets de análisis de sentimientos
-> están pensados para el inglés. El problema que delimitamos es: **¿qué técnica clasifica mejor
-> la polaridad de opiniones en español?**
+> Buenos días. Somos el equipo [nombre]. Nuestro tema es el análisis de sentimiento: clasificar
+> opiniones en reseñas como positivas, negativas o neutras. La causa del problema es que el
+> lenguaje de las reseñas es ambiguo y variado, y cada método lo procesa distinto.
+> Nuestro problema central: **¿qué método clasifica mejor las mismas reseñas en español?**
+> Necesitamos una comparación fiable, porque una mala elección produce clasificaciones poco fiables.
 
-## Bloque 2 — Pregunta de investigación y evidencia (0:20 – 1:05) · Voz B
+## Bloque 2 — Pregunta de investigación y evidencia (0:25 – 1:05) · Voz B
 
-> Nuestra pregunta de investigación queda así:
-> **¿En qué medida un modelo preentrenado tipo BERT en español supera a técnicas tradicionales,
-> como SVM y Naive Bayes con TF-IDF, al clasificar la polaridad de tuits en español,
-> medido con F1 macro sobre un mismo corpus?**
+> La pregunta de investigación queda así:
+> **¿En qué medida un modelo preentrenado tipo BERT en español supera a métodos tradicionales,
+> como SVM y Naive Bayes, al clasificar la polaridad de reseñas en español, evaluados sobre los
+> mismos datos?**
 >
-> La evidencia que permitiría responderla es una **comparación controlada**: los mismos tuits
-> etiquetados como positivo, negativo o neutro, el mismo preprocesamiento, y cada modelo evaluado
-> con validación cruzada. El resultado se presenta en una **tabla de F1 macro, precisión y recall**,
-> más la **matriz de confusión** de cada modelo. Si la diferencia de F1 es consistente en todas
-> las particiones, la pregunta queda respondida con datos y no con opinión.
+> La evidencia que permitiría responderla: un conjunto de **reseñas etiquetadas, el mismo para
+> todos los métodos**, con el mismo preprocesamiento. Comparamos **F1 macro**, analizamos los
+> **errores** de cada modelo con su matriz de confusión y medimos el **tiempo de ejecución**.
+> Si la diferencia de F1 se mantiene en todas las particiones de validación cruzada, la pregunta
+> queda respondida con datos y no con opinión.
 
-## Bloque 3 — Decisión que cambió (1:05 – 1:25) · Voz C
+## Bloque 3 — Cambio de decisión (1:05 – 1:25) · Voz C
 
-> Una decisión que cambió durante el trabajo: al principio queríamos mezclar tuits, reseñas de
-> productos y críticas gastronómicas. Al revisar las fuentes vimos que el dominio del texto
-> altera el rendimiento de los modelos, así que **acotamos el estudio a un solo dominio, tuits**,
-> para que la comparación sea justa y viable en el tiempo del curso.
+> La decisión que cambió: partimos del tema amplio "análisis de sentimiento", que abarcaba
+> emociones, tuits, tickets de soporte y llamadas. Lo acotamos a **comparar dos enfoques,
+> tradicional y preentrenado, sobre reseñas en español**, porque es donde tenemos fuentes
+> revisadas y datos etiquetados accesibles.
 
 ## Cierre (1:25 – 1:30) · Voz C
 
-> Con la pregunta delimitada, el siguiente paso es convertirla en acciones concretas y verificables.
-> Gracias.
+> Con la pregunta delimitada, hoy toca convertirla en acciones concretas y verificables. Gracias.
 
 ---
 
 ## Posibles preguntas del grupo o del docente (respuesta en una frase)
 
 - **¿Por qué F1 macro y no accuracy?**
-  Porque las clases suelen estar desbalanceadas y el accuracy esconde que el modelo falle en la clase minoritaria.
-- **¿De dónde saldrá el corpus de tuits?**
-  De un corpus público etiquetado en español (por ejemplo TASS) o de tuits recolectados con un hashtag y etiquetados por el equipo con acuerdo entre anotadores.
-- **¿Por qué BERT en español y no BERT multilingüe?**
-  Porque las fuentes muestran que un modelo preentrenado en el idioma objetivo captura mejor el léxico y la ironía locales.
-- **¿Es viable entrenar BERT con sus recursos?**
-  Sí, solo hacemos fine-tuning sobre un modelo ya preentrenado, que corre en una GPU gratuita tipo Colab.
-- **¿Qué pasa si los modelos tradicionales ganan?**
-  También es un resultado válido: significaría que para este dominio el costo computacional de BERT no se justifica.
+  Porque las clases suelen estar desbalanceadas y el accuracy esconde fallos en la clase minoritaria.
+- **¿De dónde salen las reseñas?**
+  De un corpus público etiquetado en español, o de reseñas recogidas y etiquetadas por el equipo con acuerdo entre anotadores.
+- **¿Por qué medir tiempo de ejecución?**
+  Porque si BERT gana por poco pero cuesta diez veces más, la elección práctica cambia.
+- **¿Y la ironía o el sarcasmo?**
+  Es un reto conocido; lo registramos en el análisis de errores en lugar de prometer resolverlo.
+- **¿Terminaron la revisión bibliográfica?**
+  No del todo: NotebookLM no pudo leer varios artículos y los estamos revisando a mano esta semana.
 
 ---
 
 ## Versión de emergencia (45 segundos, si van tarde)
 
-> Nuestro problema: hay millones de opiniones en español sin estructurar y la mayoría de herramientas
-> están hechas para inglés. Pregunta: ¿en qué medida BERT en español supera a SVM y Naive Bayes al
-> clasificar la polaridad de tuits, medido con F1 macro sobre el mismo corpus? Evidencia: tabla
-> comparativa de F1, precisión y recall con validación cruzada, más matrices de confusión.
-> Decisión que cambió: pasamos de mezclar reseñas, críticas y tuits a un solo dominio, tuits,
-> para que la comparación sea justa y viable. Gracias.
+> Tema: análisis de sentimiento en reseñas. Problema: el lenguaje es ambiguo y cada método lo
+> procesa distinto, así que una mala elección da clasificaciones poco fiables. Pregunta: ¿en qué
+> medida BERT en español supera a SVM y Naive Bayes al clasificar reseñas en español sobre los
+> mismos datos? Evidencia: reseñas etiquetadas, F1 macro, análisis de errores y tiempo de
+> ejecución. Decisión que cambió: del tema amplio a comparar dos enfoques en reseñas en español.
+> Gracias.
 
 ---
 
-## Fuentes que sostienen el guion
+## Anexo — Cadena del documento (Tema → Problema → Pregunta → Objetivos)
+
+**Tema.** Análisis de sentimiento con procesamiento de lenguaje natural e IA.
+
+**Problema.** Las reseñas en español usan un lenguaje ambiguo y variado; los distintos métodos de
+clasificación lo procesan de forma diferente y no existe una comparación fiable sobre los mismos
+datos, por lo que una mala elección de método produce clasificaciones poco fiables.
+
+**Pregunta de investigación.** ¿En qué medida un modelo preentrenado tipo BERT en español supera
+a métodos tradicionales (SVM y Naive Bayes) al clasificar la polaridad de reseñas en español,
+evaluados sobre los mismos datos?
+
+**Objetivo general.** Comparar de forma controlada un enfoque tradicional y un enfoque
+preentrenado para la clasificación de polaridad de reseñas en español, sobre el mismo conjunto
+de datos, en términos de F1, errores y tiempo de ejecución.
+
+**Objetivos específicos.**
+1. Obtener un conjunto de reseñas en español etiquetadas por polaridad y definir un preprocesamiento común.
+2. Entrenar y evaluar una línea base tradicional con SVM y Naive Bayes sobre TF-IDF.
+3. Ajustar y evaluar un modelo preentrenado tipo BERT en español sobre los mismos datos.
+4. Comparar ambos enfoques con F1 macro y validación cruzada, y analizar sus errores con matrices de confusión.
+5. Medir y comparar el tiempo de ejecución de cada enfoque para valorar su viabilidad práctica.
+
+---
+
+## Fuentes revisadas
 
 - Análisis de sentimiento de tuits sobre la COP9: comparación de modelos preentrenados y técnicas tradicionales (PMC).
 - Transfer learning para clasificación de sentimientos con BERT (PMC).
@@ -79,3 +103,4 @@ modelos preentrenados (BERT / transformers) frente a técnicas tradicionales (SV
 - SciELO Chile: clasificación de polaridad en textos en español.
 - Revista Espacios: opiniones sobre #BlackFriday en Twitter.
 - Redalyc: análisis de sentimientos de críticas gastronómicas con ontologías.
+- Cuaderno y mapa mental del equipo en NotebookLM.
